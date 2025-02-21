@@ -1,0 +1,72 @@
+﻿<Window x:Class="semantic_calculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        FontSize="14"
+        FontFamily="Consolas"
+        Title="Semantic Calculator" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="250" />
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="300" />
+        </Grid.RowDefinitions>
+        
+        <!-- Primary Notepad -->
+        <ListView x:Name="NotepadLV"
+                  ItemsSource="{Binding CodeLines}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="> " />
+                        <TextBlock Text="{Binding}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        <!-- Primary Input -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="32" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="InputDecorationTB" Text=">" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" />
+            <TextBox x:Name="InputTB" Grid.Column="1" VerticalContentAlignment="Center" FontSize="14" />
+        </Grid>
+
+        <!-- Sidebar -->
+        <ListView x:Name="SidebarLV" 
+                  ItemsSource="{Binding SemanticConfiguration.Operators}"
+                  Grid.Column="1" 
+                  Grid.RowSpan="3">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                    <Run Text="Operator:  " />
+                    <Run Text="{Binding Syntax, Mode=OneWay}" />
+                    <Run Text=", Type: " />
+                    <Run Text="{Binding Type, Mode=OneWay}" />
+                    </TextBlock>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Output -->
+        <ListView x:Name="OutputLV" 
+                  ItemsSource="{Binding LogMessages}"
+                  Grid.Row="2" 
+                  Grid.ColumnSpan="2">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Message, Mode=OneWay}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+    </Grid>
+</Window>
