@@ -3,11 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         FontSize="14"
         FontFamily="Consolas"
-        Title="Semantic Calculator" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="Semantic Calculator">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         
         <Grid.RowDefinitions>
@@ -23,7 +24,7 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="> " />
-                        <TextBlock Text="{Binding}" />
+                        <TextBlock Text="{Binding Message}" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -36,21 +37,21 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock x:Name="InputDecorationTB" Text=">" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" />
-            <TextBox x:Name="InputTB" Grid.Column="1" VerticalContentAlignment="Center" FontSize="14" />
+            <TextBox x:Name="InputTB" Grid.Column="1" VerticalContentAlignment="Center" FontSize="14" KeyUp="InputTB_KeyUp" />
         </Grid>
 
         <!-- Sidebar -->
         <ListView x:Name="SidebarLV" 
-                  ItemsSource="{Binding SemanticConfiguration.Operators}"
+                  ItemsSource="{Binding Operators}"
                   Grid.Column="1" 
                   Grid.RowSpan="3">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>
                     <Run Text="Operator:  " />
-                    <Run Text="{Binding Syntax, Mode=OneWay}" />
+                    <Run Text="{Binding Symbol, Mode=OneWay}" />
                     <Run Text=", Type: " />
-                    <Run Text="{Binding Type, Mode=OneWay}" />
+                    <Run Text="{Binding ArithmeticType, Mode=OneWay}" />
                     </TextBlock>
                 </DataTemplate>
             </ListView.ItemTemplate>

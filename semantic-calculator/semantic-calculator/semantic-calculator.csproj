@@ -2,12 +2,16 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFramework>net10.0-windows</TargetFramework>
     <RootNamespace>R_Framework</RootNamespace>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SimpleWpf.Utilities" Version="0.0.1" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\semantic-calculator.core\semantic-calculator.core.csproj" />
